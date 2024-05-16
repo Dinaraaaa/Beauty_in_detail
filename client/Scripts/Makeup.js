@@ -2,7 +2,7 @@ const requestOptions = {
     method: "GET",
     redirect: "follow"
   };
-  fetch("http://localhost:3001/makeup/getMakeup", requestOptions)
+  fetch(`${window.API_URL}/makeup/getMakeup`, requestOptions)
   .then((response) => response.json())
   .then((data) => {
     const priceListData = document.getElementById('priceListData');

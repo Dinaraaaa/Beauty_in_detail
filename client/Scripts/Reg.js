@@ -19,7 +19,7 @@ regForm.addEventListener('submit', async function (event) {
       redirect: "follow"
   };
 
-  fetch("http://localhost:3001/visitor/createVisitor", requestOptions)
+  fetch(`${window.API_URL}/visitor/createVisitor`, requestOptions)
   .then((response) => {
     if (!response.ok) {
       throw new Error("Ошибка при отправке данных. Возможно логин уже существует или пароль менее 6 символов.");

@@ -2,7 +2,7 @@ const requestOptions = {
     method: "GET",
     redirect: "follow"
   };
-  fetch("http://localhost:3001/nailbar/getNailbar", requestOptions)
+  fetch(`${window.API_URL}/nailbar/getNailbar`, requestOptions)
   .then((response) => response.json())
   .then((data) => {
     const priceListData = document.getElementById('priceListData');

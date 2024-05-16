@@ -8,7 +8,7 @@ const requestOptions = {
     }
 };
 const recordsTable = document.getElementById('recordsTable');
-fetch("http://localhost:3001/category/getCategory", requestOptions)
+fetch(`${window.API_URL}/category/getCategory`, requestOptions)
     .then(response => response.json())
     .then(data => {
         data.forEach(category => {
@@ -22,7 +22,7 @@ fetch("http://localhost:3001/category/getCategory", requestOptions)
 
     categorySelect.addEventListener('change', function() {
       const categoryId = this.value;
-  fetch(`http://localhost:3001/record/getRecordbyCategory/${categoryId}`, requestOptions)
+  fetch(`${window.API_URL}/record/getRecordbyCategory/${categoryId}`, requestOptions)
     .then(response => response.json())
     .then(data => {
       const tbody = recordsTable.querySelector('tbody');
@@ -46,7 +46,7 @@ fetch("http://localhost:3001/category/getCategory", requestOptions)
       // Очищаем список услуг перед загрузкой новых
       serviceSelect.innerHTML = '<option>--Выберите услугу--</option>';
   
-      fetch(`http://localhost:3001/services/getServicesByCategory/${categoryId}`, requestOptions)
+      fetch(`${window.API_URL}/services/getServicesByCategory/${categoryId}`, requestOptions)
           .then(response => response.json())
           .then(data => {
               data.forEach(service => {
@@ -65,7 +65,7 @@ fetch("http://localhost:3001/category/getCategory", requestOptions)
       // Очищаем список дней перед загрузкой новых
       daySelect.innerHTML = '<option>--Выберите день--</option>';
   
-      fetch(`http://localhost:3001/record/getRecordbyService/${serviceId}`, requestOptions)
+      fetch(`${window.API_URL}/record/getRecordbyService/${serviceId}`, requestOptions)
       .then(response => response.json())
       .then(data => {
           data.forEach(day => {
@@ -100,7 +100,7 @@ fetch("http://localhost:3001/category/getCategory", requestOptions)
     const selectedDay = this.options[selectedDayIndex].text;
     const timeSelect = document.getElementById('timeSelect');
     timeSelect.innerHTML = '<option>--Выберите время--</option>';
-      fetch(`http://localhost:3001/record/getRecordbyDay/${selectedDay}`, requestOptions)
+      fetch(`${window.API_URL}/record/getRecordbyDay/${selectedDay}`, requestOptions)
           .then(response => response.json())
           .then(data => {
               data.forEach(record => { 
@@ -138,7 +138,7 @@ document.querySelector('.time2').textContent = "";
     if (categorySelect === '--Выберите категорию--' || serviceSelect === '--Выберите услугу--' || daySelect === '--Выберите день--' || timeSelect === '--Выберите время--') {
         document.getElementById('modal').style.display = 'none';
     } else {
-    fetch(`http://localhost:3001/record/getRecordbyTime/${selectedTime}`, requestOptions)
+    fetch(`${window.API_URL}/record/getRecordbyTime/${selectedTime}`, requestOptions)
           .then(response => response.json())
           .then(data => {
               data.forEach(record => { 
@@ -164,7 +164,7 @@ document.querySelector('.time2').textContent = "";
     var selectedTime = timeSelect.options[timeSelect.selectedIndex].text;
     const id = localStorage.getItem('userId');
 
-    fetch(`http://localhost:3001/record/getRecordbyTime/${selectedTime}`, requestOptions)
+    fetch(`${window.API_URL}/record/getRecordbyTime/${selectedTime}`, requestOptions)
     .then(response => response.json())
     .then(data => {
         data.forEach(record => { 
@@ -183,7 +183,7 @@ document.querySelector('.time2').textContent = "";
     };
 
     try {
-        const response = await fetch('http://localhost:3001/record/createRecord', {
+        const response = await fetch(`${window.API_URL}/record/createRecord`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -216,7 +216,7 @@ for (let i = 0; i < recordChildren.length; i++) {
         child.style.display = 'none';
     }
 }
-    fetch(`http://localhost:3001/record/getRecordbyClient/${id}`, requestOptions)
+    fetch(`${window.API_URL}/record/getRecordbyClient/${id}`, requestOptions)
     .then(response => response.json())
     .then(data => {
       const tbody = recordsTable.querySelector('tbody');
@@ -250,7 +250,7 @@ function closeDelModal() {
 }
 function delRecord2() {
     const id2 = document.getElementById('id4').value;
-    fetch(`http://localhost:3001/record/delClient/${id2}`, requestOptions)
+    fetch(`${window.API_URL}/record/delClient/${id2}`, requestOptions)
       .then((response) => {
         if (response.status === 204) {
           alert("Запись успешно удалена");

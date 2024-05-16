@@ -2,7 +2,7 @@ const requestOptions = {
     method: "GET",
     redirect: "follow"
   };
-  fetch("http://localhost:3001/services/getServices", requestOptions)
+  fetch(`${window.API_URL}/services/getServices`, requestOptions)
   .then((response) => response.json())
   .then((data) => {
     const table = document.getElementById("client");
@@ -102,7 +102,7 @@ function addRecord() {
     body: JSON.stringify(data)
   };
 
-  fetch("http://localhost:3001/services/addServices", requestOptions)
+  fetch(`${window.API_URL}/services/addServices`, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Ошибка при добавлении данных");
@@ -147,7 +147,7 @@ function redRecord() {
     body: JSON.stringify(data)
   };
 
-  fetch(`http://localhost:3001/services/updateServices/${id}`, requestOptions)
+  fetch(`${window.API_URL}/services/updateServices/${id}`, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Ошибка при обновлении данных");
@@ -166,7 +166,7 @@ function delRecord() {
     redirect: "follow"
   };
 
-  fetch(`http://localhost:3001/services/deleteServices/${id}`, requestOptions)
+  fetch(`${window.API_URL}/services/deleteServices/${id}`, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Ошибка при удалении данных");
@@ -176,7 +176,7 @@ function delRecord() {
     })
     .catch((error) => alert(error));
 }
-  fetch("http://localhost:3001/category/getCategory", requestOptions)
+  fetch(`${window.API_URL}/category/getCategory`, requestOptions)
   .then(response => {
       if (!response.ok) {
           throw new Error('Ошибка');
@@ -206,7 +206,7 @@ function delRecord() {
     const id = this.value;
     const servicesId = parseInt(id);
     if (id) {
-      fetch(`http://localhost:3001/services/getServices/${servicesId}`, requestOptions)
+      fetch(`${window.API_URL}/services/getServices/${servicesId}`, requestOptions)
         .then(response => response.json())
         .then(data => {
           document.getElementById("id").value = data.id;

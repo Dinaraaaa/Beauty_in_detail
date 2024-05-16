@@ -14,7 +14,7 @@ authForm.addEventListener('submit', async function (event) {
         redirect: "follow"
     };
 
-    fetch("http://localhost:3001/users/login", requestOptions)
+    fetch(`${window.API_URL}/users/login`, requestOptions)
     .then((response) => {
         if (response.ok) {
             return response.json();
@@ -44,7 +44,7 @@ document.getElementById('FormRecovery').addEventListener('submit', function(e) {
     e.preventDefault();
     let email = document.getElementById('email').value;
    
-    fetch(`http://localhost:3001/users/emailUsers/${email}`, requestOptions)
+    fetch(`${window.API_URL}/users/emailUsers/${email}`, requestOptions)
     .then(response => {
         if (!response.ok) {
             if (response.status === 500) {
@@ -60,7 +60,7 @@ document.getElementById('FormRecovery').addEventListener('submit', function(e) {
         .then(data => {
             id=data.id;
             if (data && data.id) {
-                fetch(`http://localhost:3001/users/emailSending/${email}`, {
+                fetch(`${window.API_URL}/users/emailSending/${email}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -139,7 +139,7 @@ function closemodalpassword() {
           body: JSON.stringify({  id: id, password: newPassword }) 
       };
   
-      fetch(`http://localhost:3001/visitor/updatepasswordVisitor/${id}`, requestOptions)
+      fetch(`${window.API_URL}/visitor/updatepasswordVisitor/${id}`, requestOptions)
           .then(response => response.text())
           .then(result => {
               console.log(result);

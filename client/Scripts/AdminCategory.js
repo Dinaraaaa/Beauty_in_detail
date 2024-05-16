@@ -2,7 +2,7 @@ const requestOptions = {
     method: "GET",
     redirect: "follow"
   };
-  fetch("http://localhost:3001/category/getCategory", requestOptions)
+  fetch(`${window.API_URL}/category/getCategory`, requestOptions)
   .then((response) => response.json())
   .then((data) => {
     const table = document.getElementById("client");
@@ -56,7 +56,7 @@ function addRecord() {
     body: JSON.stringify(data)
   };
 
-  fetch("http://localhost:3001/category/addCategory", requestOptions)
+  fetch(`${window.API_URL}/category/addCategory`, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Ошибка при добавлении данных");
@@ -84,7 +84,7 @@ function redRecord() {
     body: JSON.stringify(data)
   };
 
-  fetch(`http://localhost:3001/category/updateCategory/${id}`, requestOptions)
+  fetch(`${window.API_URL}/category/updateCategory/${id}`, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Ошибка при обновлении данных");
@@ -106,7 +106,7 @@ function delRecord() {
     redirect: "follow"
   };
 
-  fetch(`http://localhost:3001/category/deleteCategory/${id}`, requestOptions)
+  fetch(`${window.API_URL}/category/deleteCategory/${id}`, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Ошибка при удалении данных");
@@ -175,7 +175,7 @@ function searchTable(){
  function datainput(element) {
     const id = element.value;
     const visitorId = parseInt(id);
-          fetch(`http://localhost:3001/category/getCategory/${visitorId}`, requestOptions)
+          fetch(`${window.API_URL}/category/getCategory/${visitorId}`, requestOptions)
               .then(response => response.json())
               .then(data => {
                   document.getElementById("id1").value = data.id;

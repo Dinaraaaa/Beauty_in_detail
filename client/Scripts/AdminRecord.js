@@ -3,7 +3,7 @@ const requestOptions = {
     redirect: "follow"
   };
   
-  fetch("http://localhost:3001/record//getRecord2", requestOptions)
+  fetch(`${window.API_URL}/record//getRecord2`, requestOptions)
   .then((response) => response.json()) // Изменили метод на response.json()
   .then((data) => {
     const table = document.getElementById("client");
@@ -106,7 +106,7 @@ function renderPaginationButtons(totalPages) {
       id_masters: document.getElementById('master1').value
     };
   
-    fetch('http://localhost:3001/record/addRecord', {
+    fetch(`${window.API_URL}/record/addRecord`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -137,7 +137,7 @@ function renderPaginationButtons(totalPages) {
       id_masters: document.getElementById('master').value
     };
   
-    fetch(`http://localhost:3001/record/updateRecord/${id}`, {
+    fetch(`${window.API_URL}/record/updateRecord/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ function renderPaginationButtons(totalPages) {
       redirect: "follow"
     };
   
-    fetch(`http://localhost:3001/record/deleteRecord/${id}`, requestOptions)
+    fetch(`${window.API_URL}/record/deleteRecord/${id}`, requestOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Ошибка при удалении данных");
@@ -192,7 +192,7 @@ function renderPaginationButtons(totalPages) {
       .catch((error) => alert(error));
   }
   //редактирование
-  fetch("http://localhost:3001/category/getCategory", requestOptions)
+  fetch(`${window.API_URL}/category/getCategory`, requestOptions)
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -212,7 +212,7 @@ function renderPaginationButtons(totalPages) {
     console.log("error", error);
   });
   // Получение списка мастеров
-  fetch(`http://localhost:3001/masters/getMasters`, requestOptions)
+  fetch(`${window.API_URL}/masters/getMasters`, requestOptions)
   .then(response => {
       if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -233,7 +233,7 @@ function renderPaginationButtons(totalPages) {
   });
 
 // Получение списка услуг
-fetch(`http://localhost:3001/services/getServices`, requestOptions)
+fetch(`${window.API_URL}/services/getServices`, requestOptions)
   .then(response => {
       if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -256,7 +256,7 @@ fetch(`http://localhost:3001/services/getServices`, requestOptions)
 const selectElement1 = document.getElementById("category");
 selectElement1.addEventListener('change', () => {
   const categoryId = selectElement1.value;
-  fetch(`http://localhost:3001/masters/getMasterByCategory/${categoryId}`, requestOptions)
+  fetch(`${window.API_URL}/masters/getMasterByCategory/${categoryId}`, requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -281,7 +281,7 @@ selectElement1.addEventListener('change', () => {
 // Получение услуг определенной категории
 selectElement1.addEventListener('change', () => {
   const categoryId = selectElement1.value;
-  fetch(`http://localhost:3001/services/getServicesByCategory/${categoryId}`, requestOptions)
+  fetch(`${window.API_URL}/services/getServicesByCategory/${categoryId}`, requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -304,7 +304,7 @@ selectElement1.addEventListener('change', () => {
 });
 
 //добавление
-fetch("http://localhost:3001/category/getCategory", requestOptions)
+fetch(`${window.API_URL}/category/getCategory`, requestOptions)
 .then(response => {
   if (!response.ok) {
     throw new Error('Network response was not ok');
@@ -328,7 +328,7 @@ fetch("http://localhost:3001/category/getCategory", requestOptions)
 const selectElement2 = document.getElementById("category1");
 selectElement2.addEventListener('change', () => {
 const categoryId = selectElement2.value;
-fetch(`http://localhost:3001/masters/getMasterByCategory/${categoryId}`, requestOptions)
+fetch(`${window.API_URL}/masters/getMasterByCategory/${categoryId}`, requestOptions)
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -353,7 +353,7 @@ fetch(`http://localhost:3001/masters/getMasterByCategory/${categoryId}`, request
 // Получение услуг определенной категории
 selectElement2.addEventListener('change', () => {
 const categoryId = selectElement2.value;
-fetch(`http://localhost:3001/services/getServicesByCategory/${categoryId}`, requestOptions)
+fetch(`${window.API_URL}/services/getServicesByCategory/${categoryId}`, requestOptions)
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -379,7 +379,7 @@ document.getElementById("id").addEventListener("input", function() {
   const id = this.value;
   const recordId = parseInt(id);
   if (id) {
-      fetch(`http://localhost:3001/record/getRecord/${recordId}`, requestOptions)
+      fetch(`${window.API_URL}/record/getRecord/${recordId}`, requestOptions)
           .then(response => response.json())
           .then(data => {
               const date = new Date(data.day);
@@ -409,7 +409,7 @@ document.getElementById("id").addEventListener("input", function() {
     const id = this.value;
     const clientId = parseInt(id);
     if (id) {
-      fetch(`http://localhost:3001/visitor/getVisitor/${clientId}`, requestOptions)
+      fetch(`${window.API_URL}/visitor/getVisitor/${clientId}`, requestOptions)
         .then(response => response.json())
         .then(data => {
           document.getElementById("idvisitor1").value = data.id;
@@ -424,7 +424,7 @@ document.getElementById("id").addEventListener("input", function() {
       const id = this.value;
       const clientId = parseInt(id);
       if (id) {
-        fetch(`http://localhost:3001/visitor/getVisitor/${clientId}`, requestOptions)
+        fetch(`${window.API_URL}/visitor/getVisitor/${clientId}`, requestOptions)
           .then(response => response.json())
           .then(data => {
             document.getElementById("idvisitor").value = data.id;

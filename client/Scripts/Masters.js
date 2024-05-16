@@ -2,7 +2,7 @@ const requestOptions = {
   method: "GET",
   redirect: "follow",
 };
-fetch("http://localhost:3001/masters/getMasters", requestOptions)
+fetch(`${window.API_URL}/masters/getMasters`, requestOptions)
 .then((response) => response.json())
 .then((data) => {
   const masterInfo = data[0];
@@ -17,7 +17,7 @@ fetch("http://localhost:3001/masters/getMasters", requestOptions)
 })
 .catch((error) => console.error(error));
 document.getElementById("Paric").addEventListener('click', () => {
-  fetch("http://localhost:3001/masters/getMasters", requestOptions)
+  fetch(`${window.API_URL}/masters/getMasters`, requestOptions)
     .then((response) => response.json())
     .then((data) => {
       const masterInfo = data[0]; 
@@ -34,7 +34,7 @@ document.getElementById("Paric").addEventListener('click', () => {
 });
 
 document.getElementById("MakeUp").addEventListener('click', () => {
-  fetch("http://localhost:3001/masters/getMasters", requestOptions)
+  fetch(`${window.API_URL}/masters/getMasters`, requestOptions)
     .then((response) => response.json())
     .then((data) => {
       const masterInfo = data[1]; 
@@ -51,7 +51,7 @@ document.getElementById("MakeUp").addEventListener('click', () => {
 });
 
 document.getElementById("manicure").addEventListener('click', () => {
-  fetch("http://localhost:3001/masters/getMasters", requestOptions)
+  fetch(`${window.API_URL}/masters/getMasters`, requestOptions)
     .then((response) => response.json())
     .then((data) => {
       const masterInfo = data[2]; 
@@ -67,7 +67,7 @@ document.getElementById("manicure").addEventListener('click', () => {
     .catch((error) => console.error(error));
 });
 document.getElementById("epilation").addEventListener('click', () => {
-  fetch("http://localhost:3001/masters/getMasters", requestOptions)
+  fetch(`${window.API_URL}/masters/getMasters`, requestOptions)
     .then((response) => response.json())
     .then((data) => {
       const masterInfo = data[3]; 

@@ -2,7 +2,7 @@ const requestOptions = {
     method: "GET",
     redirect: "follow"
   };
-  fetch("http://localhost:3001/visitor/getVisitor", requestOptions)
+  fetch(`${window.API_URL}/visitor/getVisitor`, requestOptions)
   .then((response) => response.json())
   .then((data) => {
     const table = document.getElementById("client");
@@ -131,7 +131,7 @@ function searchTable(){
         body: JSON.stringify({ lastname, name, patronymic, phone, dateofbirth: dob, login, password, email }),
       };
     
-      fetch("http://localhost:3001/visitor/createVisitor", requestOptions)
+      fetch(`${window.API_URL}/visitor/createVisitor`, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error("Ошибка при обновлении данных");
@@ -171,7 +171,7 @@ function searchTable(){
           })
       };
   
-      fetch("http://localhost:3001/visitor/updateVisitor", requestOptions)
+      fetch(`${window.API_URL}/visitor/updateVisitor`, requestOptions)
           .then(response => {
               if (!response.ok) {
                   throw new Error('Ошибка при обновлении данных');
@@ -194,7 +194,7 @@ function searchTable(){
       redirect: "follow"
     };
   
-    fetch(`http://localhost:3001/visitor/deleteVisitor/${id}`, requestOptions)
+    fetch(`${window.API_URL}/visitor/deleteVisitor/${id}`, requestOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Ошибка при удалении данных");
@@ -208,7 +208,7 @@ function searchTable(){
     const id = this.value;
     const visitorId = parseInt(id);
     if (id) {
-      fetch(`http://localhost:3001/visitor/getVisitor/${visitorId}`, requestOptions)
+      fetch(`${window.API_URL}/visitor/getVisitor/${visitorId}`, requestOptions)
         .then(response => response.json())
         .then(data => {
           const date = new Date(data.dateofbirth);

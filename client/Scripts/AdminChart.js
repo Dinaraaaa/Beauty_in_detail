@@ -1,5 +1,5 @@
   document.addEventListener('DOMContentLoaded', () => {
-  fetch("http://localhost:3001/record/revenueByMonth")
+  fetch(`${window.API_URL}/record/revenueByMonth`)
       .then(response => {
           if (!response.ok) {
               throw new Error('Ошибка при получении данных о прибыли');
@@ -44,7 +44,7 @@
       .catch(error => console.error(error));
 
       function loadVisitsChartData() {
-        fetch("http://localhost:3001/record/recordCompleteness")
+        fetch(`${window.API_URL}/record/recordCompleteness`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Ошибка при получении данных о посещаемости');

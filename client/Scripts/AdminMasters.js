@@ -3,7 +3,7 @@ const requestOptions = {
     redirect: "follow"
   };
   
-  fetch("http://localhost:3001/masters/getMasters", requestOptions)
+  fetch(`${window.API_URL}/masters/getMasters`, requestOptions)
   .then((response) => response.json())
   .then((data) => {
     const table = document.getElementById("client");
@@ -89,7 +89,7 @@ function addRecord() {
     date_of_birth: date_of_birth
   };
 
-  fetch('http://localhost:3001/masters/addMaster', {
+  fetch(`${window.API_URL}/masters/addMaster`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -185,7 +185,7 @@ function redRecord() {
     date_of_birth: date_of_birth
   };
 
-  fetch(`http://localhost:3001/masters/updateMaster/${id}`, {
+  fetch(`${window.API_URL}/masters/updateMaster/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -211,7 +211,7 @@ function delRecord() {
     redirect: "follow"
   };
 
-  fetch(`http://localhost:3001/masters/deleteMaster/${id}`, requestOptions)
+  fetch(`${window.API_URL}/masters/deleteMaster/${id}`, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Ошибка при удалении данных");
@@ -221,7 +221,7 @@ function delRecord() {
     })
     .catch((error) => alert(error));
 }
-  fetch("http://localhost:3001/category/getCategory", requestOptions)
+  fetch(`${window.API_URL}/category/getCategory`, requestOptions)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -251,7 +251,7 @@ function delRecord() {
     const id = this.value;
     const masterId = parseInt(id);
     if (id) {
-      fetch(`http://localhost:3001/masters/getMasters/${masterId}`, requestOptions)
+      fetch(`${window.API_URL}/masters/getMasters/${masterId}`, requestOptions)
         .then(response => response.json())
         .then(data => {
           const date = new Date(data.date_of_birth);
